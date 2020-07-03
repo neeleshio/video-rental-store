@@ -15,7 +15,9 @@ const inventorySchema = new Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
+
+    available: Boolean
 })
 
-module.exports = mongoose.model('Inventory', inventorySchema)
+module.exports = mongoose.model('Film', inventorySchema)

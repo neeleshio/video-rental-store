@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { json } = require('express');
+const inventoryRoute = require('./routes/inventory')
+const cors = require('cors')
+
 require('dotenv').config();
 const app = express()
 
@@ -9,12 +12,8 @@ mongoose.connect(process.env.DB, { useUnifiedTopology: true, useNewUrlParser: tr
     .then(result => { console.log('connected') })
     .catch(err => { console.log(err) });
 
-
-app.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Home'
-    })
-})
+app.use(cors())
+app.use('/admin', inventoryRoute)
 
 app.use(express.json())
 

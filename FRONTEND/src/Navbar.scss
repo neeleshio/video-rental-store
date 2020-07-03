@@ -1,0 +1,19 @@
+.logo {
+    color: inherit;
+
+    &:hover {
+        color: unset;
+    }
+
+    span {
+        color: #ADFF2F;
+    }
+}
+
+.admin {
+    color: rgba(255, 255, 255, 0.589);
+
+    &:hover {
+        color: #fff;
+    }
+}

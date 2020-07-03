@@ -10,52 +10,62 @@ const inventory = [
     new Inventory({
         name: 'Avengers: Endgame',
         type: 'New release',
-        price: 40
+        price: 40,
+        available: true
     }),
     new Inventory({
         name: 'Spider-Man: Far From Home',
         type: 'New release',
-        price: 40
+        price: 40,
+        available: true
     }),
     new Inventory({
         name: 'Joker',
         type: 'New release',
-        price: 40
+        price: 40,
+        available: true
     }),
     new Inventory({
         name: 'Jumanji',
         type: 'New release',
-        price: 40
+        price: 40,
+        available: true
     }),
     new Inventory({
         name: 'Mission: Impossible - Fallout',
         type: 'Regular',
-        price: 30
+        price: 30,
+        available: true
     }),
     new Inventory({
         name: 'Wonder Woman',
         type: 'Regular',
-        price: 30
+        price: 30,
+        available: true
     }),
     new Inventory({
         name: 'Incredibles 2',
         type: 'Regular',
-        price: 30
+        price: 30,
+        available: true
     }),
     new Inventory({
         name: 'Metropolis',
         type: 'Old',
-        price: 30
+        price: 30,
+        available: true
     }),
     new Inventory({
         name: 'Up',
         type: 'Old',
-        price: 30
+        price: 30,
+        available: true
     }),
     new Inventory({
         name: 'The Dark Knight',
         type: 'Old',
-        price: 30
+        price: 30,
+        available: true
     })
 ];
 
