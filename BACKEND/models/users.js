@@ -5,6 +5,10 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: true
+    },
+    bonusPoints: {
+        type: Number,
+        required: true
     }
 })
 

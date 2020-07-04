@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const Inventory = require('../models/inventory')
 
-router.get('/all', (req, res, next) => {
+router.get('/', (req, res, next) => {
     Inventory.find().select()
         .then(doc => {
             res.status(200).json(doc);
@@ -12,7 +11,16 @@ router.get('/all', (req, res, next) => {
 })
 
 router.get('/available', (req, res, next) => {
-    Inventory.find({ 'available': true })
+    Inventory.find({ 'isAvailable': true })
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => console.log(err));
+})
+
+router.patch('/id', (req, res, next) => {
+    const id = { _id: req.body.id }
+    Inventory.updateOne(id, { $set: { type: req.body.type } })
         .then(doc => {
             res.status(200).json(doc);
         })

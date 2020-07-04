@@ -1,5 +1,6 @@
 const User = require('../models/users');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { response } = require('express');
 require('dotenv').config()
 
 mongoose.connect(process.env.DB, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -8,32 +9,11 @@ mongoose.connect(process.env.DB, { useUnifiedTopology: true, useNewUrlParser: tr
 
 const user = [
     new User({
-        username: 'stark'
-    }),
-    new User({
-        username: 'hulk'
-    }),
-    new User({
-        username: 'loki'
-    }),
-    new User({
-        username: 'thanos'
-    }),
-    new User({
-        username: 'fury'
+        username: 'stark',
+        bonusPoints: 0
     })
 ];
 
-let done = 0;
-for (let i = 0; i < user.length; i++) {
-    user[i].save(() => {
-        done++;
-        if (done === user.length) {
-            exit();
-        }
-    })
-}
-
-exit = () => {
+user[0].save().then(response => {
     mongoose.disconnect();
-}
+})

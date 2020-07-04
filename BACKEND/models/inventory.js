@@ -3,18 +3,15 @@ const Schema = mongoose.Schema;
 
 const inventorySchema = new Schema({
     name: {
-        type: String,
-        required: true
+        type: String
     },
 
     type: {
-        type: String,
-        required: true
+        type: String
     },
 
     price: {
-        type: Number,
-        required: true
+        type: Number
     },
 
     isavailable: Boolean
