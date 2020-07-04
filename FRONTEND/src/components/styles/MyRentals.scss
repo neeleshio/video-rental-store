@@ -1,0 +1,17 @@
+.h1-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    background-color: #3e444a;
+
+    h1 {
+        position: absolute;
+        top: 8%;
+        background-color: #3e444a;
+        padding: 10px;
+        margin: 0;
+        color: #fff;
+       
+    }
+}

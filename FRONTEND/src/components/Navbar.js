@@ -14,7 +14,7 @@ class Navigation extends React.Component {
                 </Navbar.Brand>
                 <Nav className="mr-auto"></Nav>
                 <Nav>
-                    <Nav.Link><Link to="/login" style={{ "textDecoration": "none" }} className="admin">My Rentals </Link></Nav.Link>
+                    <Nav.Link><Link to="/my-rentals" style={{ "textDecoration": "none" }} className="admin">My Rentals </Link></Nav.Link>
                     <Nav.Link><Link to="/admin" style={{ "textDecoration": "none" }} className="admin">Admin </Link></Nav.Link>
                 </Nav>
             </Navbar>

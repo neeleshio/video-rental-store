@@ -9,7 +9,7 @@ class Cards extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/admin/all').then(response => {
+        axios.get('http://localhost:5000/admin').then(response => {
             this.setState({
                 films: response.data
             })
