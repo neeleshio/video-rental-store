@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 import './styles/Login.scss'
 
 class Login extends Component {
     state = {
-        username: ''
+        username: '',
+        redirect: false
     }
 
     handleChange = (e) => {
@@ -25,11 +28,26 @@ class Login extends Component {
         e.preventDefault();
         const isValid = this.validate()
         if (isValid) {
-            console.log(this.state)
+            axios.post('http://localhost:5000/login', this.state).then(response => {
+                if (response) {
+                    sessionStorage.setItem('token', response);
+                    this.setState({
+                        redirect: true
+                    })
+                    console.log(this.state)
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
 
     render() {
+        if (this.state.redirect) {
+            return (
+                <Redirect to={'/'} />
+            )
+        }
         return (
             <div className="form-container">
                 <Form onSubmit={this.submitHandle}>
