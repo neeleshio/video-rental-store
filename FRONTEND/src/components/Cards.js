@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Cards.scss';
+import './styles/Cards.scss';
 import { Card, Button, CardGroup, Row, Col } from 'react-bootstrap';
 import axios from 'axios'
 

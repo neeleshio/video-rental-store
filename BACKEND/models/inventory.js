@@ -17,7 +17,7 @@ const inventorySchema = new Schema({
         required: true
     },
 
-    available: Boolean
+    isavailable: Boolean
 })
 
 module.exports = mongoose.model('Film', inventorySchema)

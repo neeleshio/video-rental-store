@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap'
-import './Navbar.scss'
+import './styles/Navbar.scss'
 
 class Navigation extends React.Component {
     render() {
