@@ -20,7 +20,7 @@ router.get('/available', (req, res, next) => {
 
 router.patch('/id', (req, res, next) => {
     const id = { _id: req.body.id }
-    Inventory.updateOne(id, { $set: { type: req.body.type } })
+    Inventory.updateOne(id, { $set: { type: req.body.type, isAvailable: req.body.isAvailable } })
         .then(doc => {
             res.status(200).json(doc);
         })
