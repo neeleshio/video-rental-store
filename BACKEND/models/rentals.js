@@ -5,8 +5,11 @@ const rentalSchema = new Schema({
     user: {
         type: mongoose.Types.ObjectId, ref: 'User'
     },
-    movieId: {
-        type: mongoose.Types.ObjectId, ref: 'film'
+    filmId: {
+        type: mongoose.Types.ObjectId, ref: 'Film'
+    },
+    filmName: {
+        type: String
     },
     type: {
         type: String

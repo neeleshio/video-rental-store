@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
                 <tr key={film.id}>
                     <td>{film.name}</td>
                     <td>{film.type}</td>
-                    <td>{film.price} &#8364;</td>
+                    <td>{film.price} &#8377;</td>
                     <td>
                         <Button variant="outline-success" onClick={this.editFilm.bind(this, film._id, film.type)}>Edit</Button>{' '}
                         <Button variant="outline-danger">Delete</Button>{' '}

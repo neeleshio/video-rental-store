@@ -22,7 +22,7 @@ class MyRentals extends Component {
                     <td>{rental.movie}</td>
                     <td>{rental.type}</td>
                     <td>{rental.timeline} days</td>
-                    <td>{rental.price} &#8364;</td>
+                    <td>{rental.price} &#8377;</td>
                 </tr>
             )
         })

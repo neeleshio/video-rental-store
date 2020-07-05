@@ -15,9 +15,10 @@ class Home extends React.Component {
             name: '',
             type: '',
             price: '',
-            days: '0'
-        },
-        total: '0'
+            days: '',
+            total: '0'
+        }
+
     }
 
     componentDidMount() {
@@ -34,7 +35,9 @@ class Home extends React.Component {
     }
     handleClose = () => {
         this.setState({ show: false })
-
+        this.setState({
+            total: '0'
+        })
     }
 
 
@@ -46,7 +49,7 @@ class Home extends React.Component {
     newOrder = (id, name, type, price) => {
         this.handleShow()
         this.setState({
-            newOrder: { id, name, type, price },
+            newOrder: { id, name, type, price }
         })
     }
 
@@ -58,7 +61,7 @@ class Home extends React.Component {
             })
         }
 
-        if (this.state.newOrder.type === 'Old' && e.target.value < 4) {
+        if (this.state.newOrder.type === 'Old' && e.target.value < 4 && e.target.value > 0) {
             this.setState({
                 total: this.state.newOrder.price,
                 days: e.target.value
@@ -72,7 +75,7 @@ class Home extends React.Component {
             })
         }
 
-        if (this.state.newOrder.type === 'Regular' && e.target.value < 6) {
+        if (this.state.newOrder.type === 'Regular' && e.target.value < 6 && e.target.value > 0) {
             this.setState({
                 total: this.state.newOrder.price,
                 days: e.target.value
@@ -86,11 +89,30 @@ class Home extends React.Component {
             })
         }
 
+        if (e.target.value === '0' || this.state.total === ' ') {
+            this.setState({
+                total: '0'
+            })
+        }
+
         console.log(this.state)
     }
 
-    console = () => {
-        console.log(this.state)
+    postOrder = () => {
+        let data = {
+            id: this.state.newOrder.id,
+            name: this.state.newOrder.name,
+            type: this.state.newOrder.type,
+            days: this.state.days,
+            total: this.state.total
+        }
+
+        axios.post('http://localhost:5000/new-order', data).then(response => {
+            this.handleClose()
+            console.log(response)
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     render() {
@@ -104,7 +126,7 @@ class Home extends React.Component {
                                     <Card.Img variant="top" src={film.imageUrl} />
                                     <Card.Title>{film.name}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">{film.type}</Card.Subtitle>
-                                    <Card.Subtitle className="mb-2 text-muted">Price: {film.price}&#8364;</Card.Subtitle>
+                                    <Card.Subtitle className="mb-2 text-muted">Price: {film.price}&#8377;</Card.Subtitle>
 
                                     <div>
                                         <Button variant="primary"
@@ -137,7 +159,7 @@ class Home extends React.Component {
                             <div className="container">
                                 <p>Movie: <strong>{this.state.newOrder.name}</strong></p>
                                 <p>Type: <strong>{this.state.newOrder.type}</strong></p>
-                                <p>Price: <strong>{this.state.newOrder.price} &#8364;</strong></p>
+                                <p>Price: <strong>{this.state.newOrder.price} &#8377;</strong></p>
                             </div>
                             <Form size="sm">
                                 <Form.Label className="label">How many days?</Form.Label>
@@ -145,15 +167,15 @@ class Home extends React.Component {
                             </Form>
                             <p>{this.state.message}</p>
                             <hr />
-                            <h3>Sub Total: {this.state.total} &#8364;</h3>
+                            <h3>Sub Total: {this.state.total} &#8377;</h3>
                             <br />
                             <div>
                                 <input type="checkbox" onChange={this.isChecked} />
-                                <label for="tc"> I accecpt terms & conditions </label>
+                                <label for="tc" style={{ 'padding-left': 10 }}> I accecpt terms & conditions </label>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="primary" disabled={!this.state.isChecked} onClick={this.console} size="sm">Place Order</Button>
+                            <Button variant="primary" disabled={!this.state.isChecked} onClick={this.postOrder} size="sm">Place Order</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>

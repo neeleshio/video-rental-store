@@ -4,13 +4,14 @@ const Rentals = require('../models/rentals');
 const { Mongoose } = require('mongoose');
 
 router.post('/new-order', (req, res, next) => {
-    const order = {
+    const order = new Rentals({
         user: req.body.user,
-        movieId: req.body.id,
+        filmId: req.body.id,
+        filmName: req.body.name,
         type: req.body.type,
         days: req.body.days,
         total: req.body.total
-    }
+    })
     order.save()
         .then(doc => {
             res.status(200).json(doc);
