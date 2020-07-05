@@ -3,18 +3,18 @@ const Schema = mongoose.Schema;
 
 const rentalSchema = new Schema({
     user: {
-        type: mongoose.Types.ObjectId, ref: 'Users'
+        type: mongoose.Types.ObjectId, ref: 'User'
     },
     movieId: {
-        type: mongoose.Types.ObjectId, ref: 'films'
+        type: mongoose.Types.ObjectId, ref: 'film'
     },
     type: {
         type: String
     },
-    timeline: {
+    days: {
         type: Number
     },
-    price: {
+    total: {
         type: Number
     }
 })

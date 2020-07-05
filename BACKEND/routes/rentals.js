@@ -1,9 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Rentals = require('../models/rentals')
+const Rentals = require('../models/rentals');
+const { Mongoose } = require('mongoose');
 
-router.get('/my-rentals', (req, res, next) => {
-    Rentals.find().select()
+router.post('/new-order', (req, res, next) => {
+    const order = {
+        user: req.body.user,
+        movieId: req.body.id,
+        type: req.body.type,
+        days: req.body.days,
+        total: req.body.total
+    }
+    order.save()
         .then(doc => {
             res.status(200).json(doc);
         })

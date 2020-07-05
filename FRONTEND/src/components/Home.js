@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './styles/Home.scss';
 import { Row, Modal, Button, Form, Card, CardGroup, Col } from 'react-bootstrap'
-import axios from 'axios'
+import axios from 'axios';
+
+
 
 class Home extends React.Component {
     state = {
@@ -9,9 +11,13 @@ class Home extends React.Component {
         show: false,
         isChecked: false,
         newOrder: {
-            total: '0.00'
-        }
-
+            id: '',
+            name: '',
+            type: '',
+            price: '',
+            days: '0'
+        },
+        total: '0'
     }
 
     componentDidMount() {
@@ -22,19 +28,70 @@ class Home extends React.Component {
         })
     }
 
-    handleShow = () => this.setState({ show: true })
+    handleShow = () => {
+        this.setState({ show: true })
 
-    handleClose = () => {
-        this.setState({
-            show: false
-        })
     }
+    handleClose = () => {
+        this.setState({ show: false })
+
+    }
+
 
     isChecked = (e) => {
         this.setState({ isChecked: !this.state.isChecked })
+
+    }
+
+    newOrder = (id, name, type, price) => {
+        this.handleShow()
+        this.setState({
+            newOrder: { id, name, type, price },
+        })
+    }
+
+    onChange = (e) => {
+        if (this.state.newOrder.type === 'New Release') {
+            this.setState({
+                total: e.target.value * this.state.newOrder.price,
+                days: e.target.value
+            })
+        }
+
+        if (this.state.newOrder.type === 'Old' && e.target.value < 4) {
+            this.setState({
+                total: this.state.newOrder.price,
+                days: e.target.value
+            })
+        }
+
+        if (this.state.newOrder.type === 'Old' && e.target.value > 3) {
+            this.setState({
+                total: (e.target.value - 2) * this.state.newOrder.price,
+                days: e.target.value
+            })
+        }
+
+        if (this.state.newOrder.type === 'Regular' && e.target.value < 6) {
+            this.setState({
+                total: this.state.newOrder.price,
+                days: e.target.value
+            })
+        }
+
+        if (this.state.newOrder.type === 'Regular' && e.target.value > 5) {
+            this.setState({
+                total: (e.target.value - 4) * this.state.newOrder.price,
+                days: e.target.value
+            })
+        }
+
         console.log(this.state)
     }
 
+    console = () => {
+        console.log(this.state)
+    }
 
     render() {
         let films = this.state.films.map(film => {
@@ -48,7 +105,17 @@ class Home extends React.Component {
                                     <Card.Title>{film.name}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">{film.type}</Card.Subtitle>
                                     <Card.Subtitle className="mb-2 text-muted">Price: {film.price}&#8364;</Card.Subtitle>
-                                    <Button variant="primary" disabled={!film.isAvailable} className="btn" onClick={this.handleShow} size="sm">{film.isAvailable ? 'Rent' : 'Not Available'}</Button>{' '}
+
+                                    <div>
+                                        <Button variant="primary"
+                                            disabled={!film.isAvailable}
+                                            className="btn"
+                                            onClick={this.newOrder.bind(this, film._id, film.name, film.type, film.price)}
+                                            size="sm">
+                                            {film.isAvailable ? 'Rent' : 'Not Available'}
+                                        </Button>{' '}
+                                    </div>
+
                                 </Card.Body >
                             </Card>
                         </CardGroup>
@@ -68,17 +135,17 @@ class Home extends React.Component {
                         </Modal.Header>
                         <Modal.Body>
                             <div className="container">
-                                <p>Movie: </p>
-                                <p>Type: </p>
-                                <p>Price: </p>
+                                <p>Movie: <strong>{this.state.newOrder.name}</strong></p>
+                                <p>Type: <strong>{this.state.newOrder.type}</strong></p>
+                                <p>Price: <strong>{this.state.newOrder.price} &#8364;</strong></p>
                             </div>
                             <Form size="sm">
                                 <Form.Label className="label">How many days?</Form.Label>
-                                <Form.Control type="text" placeholder="ex: 2" />
+                                <Form.Control type="text" placeholder="ex: 2" onChange={this.onChange} />
                             </Form>
-
+                            <p>{this.state.message}</p>
                             <hr />
-                            <h3>Sub Total: {this.state.newOrder.total}</h3>
+                            <h3>Sub Total: {this.state.total} &#8364;</h3>
                             <br />
                             <div>
                                 <input type="checkbox" onChange={this.isChecked} />
@@ -86,7 +153,7 @@ class Home extends React.Component {
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="primary" disabled={!this.state.isChecked} size="sm">Place Order</Button>
+                            <Button variant="primary" disabled={!this.state.isChecked} onClick={this.console} size="sm">Place Order</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
