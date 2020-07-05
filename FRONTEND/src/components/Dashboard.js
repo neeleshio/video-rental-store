@@ -14,8 +14,6 @@ class Dashboard extends React.Component {
         }
     }
 
-
-
     componentDidMount() {
         axios.get('http://localhost:5000/admin').then(response => {
             this.setState({
@@ -92,7 +90,7 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div className="modal-container">
-                    <Modal show={this.state.show} onHide={this.handleClose} centered>
+                    <Modal show={this.state.show} onHide={this.handleClose} centered size="sm">
                         <Modal.Header closeButton>
                             <Modal.Title>Edit Type</Modal.Title>
                         </Modal.Header>
@@ -118,8 +116,8 @@ class Dashboard extends React.Component {
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={this.handleClose}>Cancel</Button>
-                            <Button variant="primary" onClick={this.updateFilm}>Save Changes</Button>
+                            <Button variant="secondary" onClick={this.handleClose} size="sm">Cancel</Button>
+                            <Button variant="primary" onClick={this.updateFilm} size="sm">Save Changes</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
