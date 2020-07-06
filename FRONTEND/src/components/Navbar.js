@@ -9,7 +9,7 @@ class Navigation extends Component {
 
     //Returnes user info on load
     componentDidMount() {
-        axios.get('http://localhost:5000/user').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/user').then(response => {
 
             this.setState({
                 user: response.data[0]

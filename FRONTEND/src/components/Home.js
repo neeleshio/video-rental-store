@@ -31,12 +31,12 @@ class Home extends Component {
 
     //Returns all films & user info
     componentDidMount() {
-        axios.get('http://localhost:5000/admin').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/admin').then(response => {
             this.setState({
                 films: response.data
             })
         });
-        axios.get('http://localhost:5000/user').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/user').then(response => {
             this.setState({
                 user: response.data[0]._id,
                 bonusAvailable: response.data[0].bonusPoints
@@ -146,14 +146,14 @@ class Home extends Component {
         //Saves the new order info to the DB and refreshes once order is successful
         //Returns the updated bonus points
         if (this.state.days.length > 0) {
-            axios.post('http://localhost:5000/new-order', data).then(response => {
+            axios.post('https://video-rental-store--neeleshshetty.repl.co/new-order', data).then(response => {
 
-                axios.patch('http://localhost:5000/admin/id', data).then(response => {
+                axios.patch('https://video-rental-store--neeleshshetty.repl.co/admin/id', data).then(response => {
                     console.log(response)
                     this.handleClose()
                     this.handleShowConfo()
 
-                    axios.patch('http://localhost:5000/user', data).then(response => {
+                    axios.patch('https://video-rental-store--neeleshshetty.repl.co/user', data).then(response => {
                         console.log(response)
                     }).catch(err => {
                         console.log(err)

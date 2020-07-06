@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
     //Returns all films in the inventory on load
     componentDidMount() {
-        axios.get('http://localhost:5000/admin').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/admin').then(response => {
             this.setState({
                 films: response.data
             })
@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
     //Returns all films in the inventory on click
     all = () => {
-        axios.get('http://localhost:5000/admin').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/admin').then(response => {
             this.setState({
                 films: response.data
             })
@@ -34,7 +34,7 @@ class Dashboard extends Component {
 
     //Returns only available(not rented) films
     available = () => {
-        axios.get('http://localhost:5000/admin/available').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/admin/available').then(response => {
             this.setState({
                 films: response.data
             })
@@ -69,9 +69,9 @@ class Dashboard extends Component {
             price: this.state.editFilm.type === 'New Release' ? '40' : '30'
         }
 
-        axios.patch('http://localhost:5000/admin/type/id', this.state.editFilm).then(response => {
+        axios.patch('https://video-rental-store--neeleshshetty.repl.co/admin/type/id', this.state.editFilm).then(response => {
             this.handleClose()
-            axios.patch('http://localhost:5000/admin/price/id', data).then(response => {
+            axios.patch('https://video-rental-store--neeleshshetty.repl.co/admin/price/id', data).then(response => {
                 this.all();
             }).catch(err => {
                 console.log(err)

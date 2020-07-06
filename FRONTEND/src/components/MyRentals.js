@@ -11,7 +11,7 @@ class MyRentals extends Component {
 
     //Returnes users rentals on load
     componentDidMount() {
-        axios.get('http://localhost:5000/my-rentals').then(response => {
+        axios.get('https://video-rental-store--neeleshshetty.repl.co/my-rentals').then(response => {
             this.setState({
                 rentals: response.data
             })
