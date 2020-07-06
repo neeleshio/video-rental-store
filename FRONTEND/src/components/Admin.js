@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Table, Button, Modal, Dropdown, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Table, Button, Modal, Form } from 'react-bootstrap';
 import './styles/Dashboard.scss'
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
     state = {
         films: [],
         show: false,
@@ -63,7 +62,7 @@ class Dashboard extends React.Component {
 
     //OnClick updates the type 
     updateFilm = () => {
-        axios.patch('http://localhost:5000/admin/id', this.state.editFilm).then(response => {
+        axios.patch('http://localhost:5000/admin/type/id', this.state.editFilm).then(response => {
             this.all();
             this.handleClose()
         }).catch(err => {

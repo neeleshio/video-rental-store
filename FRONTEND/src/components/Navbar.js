@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap'
 import axios from 'axios'
 import './styles/Navbar.scss'
 
-class Navigation extends React.Component {
+class Navigation extends Component {
     state = { user: '' }
 
     //Returnes user info on load

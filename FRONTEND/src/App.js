@@ -5,7 +5,7 @@ import Home from './components/Home';
 import MyRentals from './components/MyRentals'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-class App extends React.Component {
+class App extends Component {
     render() {
         return (
             <div>

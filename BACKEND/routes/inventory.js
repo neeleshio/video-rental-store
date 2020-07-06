@@ -20,14 +20,25 @@ router.get('/available', (req, res, next) => {
         .catch(err => console.log(err));
 })
 
-//Update either film type or Availability or both
 router.patch('/id', (req, res, next) => {
     const id = { _id: req.body.id }
-    Inventory.updateOne(id, { $set: { type: req.body.type, isAvailable: req.body.isAvailable } })
+    Inventory.updateOne(id, { $set: { isAvailable: req.body.isAvailable } })
         .then(doc => {
             res.status(200).json(doc);
         })
         .catch(err => console.log(err));
 })
+
+//Update film type (admin)
+router.patch('/type/id', (req, res, next) => {
+    const id = { _id: req.body.id }
+    Inventory.updateOne(id, { $set: { type: req.body.type } })
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => console.log(err));
+})
+
+
 
 module.exports = router;

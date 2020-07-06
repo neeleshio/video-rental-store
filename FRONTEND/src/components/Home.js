@@ -3,7 +3,7 @@ import './styles/Home.scss';
 import { Row, Modal, Button, Form, Card, CardGroup, Col } from 'react-bootstrap'
 import axios from 'axios';
 
-class Home extends React.Component {
+class Home extends Component {
     state = {
         films: [],
         show: false,
@@ -66,11 +66,11 @@ class Home extends React.Component {
     }
 
     onChange = (e) => {
-
         //Price calulation statements based on type of film and rental days
         this.setState({
             total: e.target.value * this.state.newOrder.price,
-            days: e.target.value
+            days: e.target.value,
+            bonusPoints: '1'
         })
 
         if (this.state.newOrder.type === 'Regular' && e.target.value < 4 && e.target.value > 0) {
@@ -110,7 +110,7 @@ class Home extends React.Component {
         }
     }
 
-    //Pushes new order info to the DB
+    //Passes new order info
     postOrder = () => {
         let data = {
             id: this.state.newOrder.id,
@@ -123,7 +123,7 @@ class Home extends React.Component {
             user: this.state.user
         }
 
-        //Carries the new order info to the DB and refreshes once order is successful
+        //Saves the new order info to the DB and refreshes once order is successful
         //Returns the updated bonus points
         if (this.state.days.length > 0) {
             axios.post('http://localhost:5000/new-order', data).then(response => {
