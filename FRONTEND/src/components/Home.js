@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import './styles/Home.scss';
 import { Row, Modal, Button, Form, Card, CardGroup, Col } from 'react-bootstrap'
 import axios from 'axios';
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
+import * as ReactBootstrap from 'react-bootstrap'
 
 class Home extends Component {
     state = {
         films: [],
         show: false,
         isChecked: false,
+        dispayBonus: false,
+        isBonusChecked: false,
         newOrder: {
             id: '',
             name: '',
@@ -17,9 +23,10 @@ class Home extends Component {
         },
         isAvailable: false,
         showConfo: false,
-        bonusPoints: '',
+        bonusAvailable: '',
         user: '',
-        days: ''
+        days: '',
+        bonusRequired: '0'
     }
 
     //Returns all films & user info
@@ -32,7 +39,7 @@ class Home extends Component {
         axios.get('http://localhost:5000/user').then(response => {
             this.setState({
                 user: response.data[0]._id,
-                bonusPoints: response.data[0].bonusPoints
+                bonusAvailable: response.data[0].bonusPoints
             })
         })
     }
@@ -51,10 +58,14 @@ class Home extends Component {
     //Handle for order confirmation form
     handleShowConfo = () => { this.setState({ showConfo: true }) }
 
-    handleCloseConfo = () => { this.setState({ showConfo: false }) }
+    handleCloseConfo = () => {
+        window.location.reload()
+        this.setState({ showConfo: false })
+    }
 
 
     isChecked = (e) => { this.setState({ isChecked: !this.state.isChecked }) }
+    isBonusChecked = () => { this.setState({ isBonusChecked: !this.state.isBonusChecked }) }
 
     //Populates film info and user info
     newOrder = (id, name, type, price, user) => {
@@ -69,9 +80,17 @@ class Home extends Component {
         //Price calulation statements based on type of film and rental days
         this.setState({
             total: e.target.value * this.state.newOrder.price,
-            days: e.target.value,
-            bonusPoints: '1'
+            days: e.target.value
         })
+
+        if (this.state.newOrder.type === 'New Release') {
+            this.setState({
+                displayBonus: true,
+                bonusRequired: e.target.value * 25
+            })
+        }
+
+        console.log(this.state)
 
         if (this.state.newOrder.type === 'Regular' && e.target.value < 4 && e.target.value > 0) {
             this.setState({
@@ -117,10 +136,11 @@ class Home extends Component {
             name: this.state.newOrder.name,
             type: this.state.newOrder.type,
             days: this.state.days,
-            total: this.state.total,
+            total: this.state.bonusRequired === '0' ? this.state.total : '0',
             isAvailable: this.state.isAvailable,
-            bonusPoints: (this.state.bonusPoints) + 1,
-            user: this.state.user
+            bonusAvailable: this.state.newOrder.type === 'New Release' ? (((this.state.bonusAvailable) + 2) - this.state.bonusRequired) : (this.state.bonusAvailable) + 1,
+            user: this.state.user,
+            bonusRequired: this.state.bonusRequired
         }
 
         //Saves the new order info to the DB and refreshes once order is successful
@@ -132,7 +152,6 @@ class Home extends Component {
                     console.log(response)
                     this.handleClose()
                     this.handleShowConfo()
-                    window.location.reload()
 
                     axios.patch('http://localhost:5000/user', data).then(response => {
                         console.log(response)
@@ -155,6 +174,7 @@ class Home extends Component {
         let films = this.state.films.map(film => {
 
             const user = this.state.user
+
             return (
                 <div className="cards">
                     {/* Cards markup for populating films info */}
@@ -186,6 +206,7 @@ class Home extends Component {
         })
 
         return (
+
             <div>
                 <Row>{films}</Row>
 
@@ -206,10 +227,19 @@ class Home extends Component {
                                 <Form.Label className="label">How many days?</Form.Label>
                                 <Form.Control type="text" placeholder="ex: 2" onChange={this.onChange} />
                             </Form>
-
-                            <p>{this.state.message}</p>
                             <hr />
-                            <h3>Sub Total: {this.state.total} &#8377;</h3>
+
+                            {this.state.displayBonus ?
+                                <div className="bonus-container">
+                                    <input type="checkbox" disabled={!(this.state.bonusRequired <= this.state.bonusAvailable)} onClick={this.isBonusChecked} />
+                                    <label for="tc" style={{ 'padding-left': 10 }}> Proceed with bonus points 25&#8473;/day </label>
+                                    <p>Required: {this.state.bonusRequired}&#8473;</p>
+                                    <p>Available: {this.state.bonusAvailable}&#8473;</p>
+                                </div> : ''
+                            }
+
+                            <hr />
+                            <h3>Sub Total: {this.state.isBonusChecked ? '0' : this.state.total} &#8377;</h3>
                             <br />
                             <div>
                                 <input type="checkbox" onChange={this.isChecked} />
@@ -231,6 +261,8 @@ class Home extends Component {
                         <Modal.Body>
                             <div>
                                 <h4>Successful &#x2713;</h4>
+                                <p>{this.state.newOrder.name}({this.state.newOrder.type}) - {this.state.days}days</p>
+
                             </div>
                         </Modal.Body>
                     </Modal>

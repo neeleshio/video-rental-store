@@ -28,6 +28,7 @@ class MyRentals extends Component {
                     <td>{rental.type}</td>
                     <td>{rental.days} days</td>
                     <td>{rental.total} &#8377;</td>
+                    <td>{rental.bonus} &#8473;</td>
                 </tr>
             )
         })
@@ -44,17 +45,16 @@ class MyRentals extends Component {
                             <th>Order Id</th>
                             <th>Movie</th>
                             <th>Type</th>
-                            <th>days</th>
-                            <th>Price</th>
+                            <th>Days</th>
+                            <th>Paid with Cash</th>
+                            <th>Paid with Points</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rentals}
                     </tbody>
                 </Table>
-                <div className="total">
-                    <h2>Total: {this.state.total} &#8377;</h2>
-                </div>
+
             </div>
         )
     }

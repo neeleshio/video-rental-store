@@ -11,7 +11,8 @@ router.post('/new-order', (req, res, next) => {
         filmName: req.body.name,
         type: req.body.type,
         days: req.body.days,
-        total: req.body.total
+        total: req.body.total,
+        bonus: req.body.bonusRequired
     })
     order.save()
         .then(doc => {

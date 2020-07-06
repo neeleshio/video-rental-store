@@ -40,5 +40,14 @@ router.patch('/type/id', (req, res, next) => {
 })
 
 
+router.patch('/price/id', (req, res, next) => {
+    const id = { _id: req.body.id }
+    Inventory.updateOne(id, { $set: { price: req.body.price } })
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => console.log(err));
+})
+
 
 module.exports = router;

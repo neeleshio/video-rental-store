@@ -15,7 +15,7 @@ router.get('/user', (req, res, next) => {
 //Update user's bonus point on every order
 router.patch('/user', (req, res, next) => {
     const user = { _id: req.body.user }
-    User.updateOne(user, { $set: { bonusPoints: req.body.bonusPoints } })
+    User.updateOne(user, { $set: { bonusPoints: req.body.bonusAvailable } })
         .then(doc => {
             res.status(200).json(doc);
         })

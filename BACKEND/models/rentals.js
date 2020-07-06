@@ -19,6 +19,9 @@ const rentalSchema = new Schema({
     },
     total: {
         type: Number
+    },
+    bonus: {
+        type: Number
     }
 })
 

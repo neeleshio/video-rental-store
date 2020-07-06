@@ -9,7 +9,8 @@ class Dashboard extends Component {
         show: false,
         editFilm: {
             id: '',
-            type: ''
+            type: '',
+            price: ''
         }
     }
 
@@ -60,15 +61,24 @@ class Dashboard extends Component {
         })
     }
 
-    //OnClick updates the type 
+    //OnClick updates the type & price
     updateFilm = () => {
+        let data = {
+            id: this.state.editFilm.id,
+            type: this.state.editFilm.type,
+            price: this.state.editFilm.type === 'New Release' ? '40' : '30'
+        }
+
         axios.patch('http://localhost:5000/admin/type/id', this.state.editFilm).then(response => {
-            this.all();
             this.handleClose()
+            axios.patch('http://localhost:5000/admin/price/id', data).then(response => {
+                this.all();
+            }).catch(err => {
+                console.log(err)
+            })
         }).catch(err => {
             console.log(err)
         })
-
     }
 
     //Renders all returned data on the webpage

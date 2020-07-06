@@ -17,6 +17,27 @@ body {
             margin: 0;
         }
     }
+
+        .bonus-container {
+            border: 1px solid #3e444a;
+            border-radius: 5px;
+
+            input {
+                margin-left: 7px;
+            }
+
+            label {
+                color: green;
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 14px;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+            }
+        }
 }
 
 .row {
