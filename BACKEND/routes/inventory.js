@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Inventory = require('../models/inventory')
 
+//Query all films
 router.get('/', (req, res, next) => {
     Inventory.find().select()
         .then(doc => {
@@ -10,6 +11,7 @@ router.get('/', (req, res, next) => {
         .catch(err => console.log(err));
 })
 
+//Query only available films
 router.get('/available', (req, res, next) => {
     Inventory.find({ 'isAvailable': true })
         .then(doc => {
@@ -18,6 +20,7 @@ router.get('/available', (req, res, next) => {
         .catch(err => console.log(err));
 })
 
+//Update either film type or Availability or both
 router.patch('/id', (req, res, next) => {
     const id = { _id: req.body.id }
     Inventory.updateOne(id, { $set: { type: req.body.type, isAvailable: req.body.isAvailable } })

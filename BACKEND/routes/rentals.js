@@ -3,6 +3,7 @@ const router = express.Router();
 const Rentals = require('../models/rentals');
 const { Mongoose } = require('mongoose');
 
+//New order
 router.post('/new-order', (req, res, next) => {
     const order = new Rentals({
         user: req.body.user,
@@ -19,6 +20,7 @@ router.post('/new-order', (req, res, next) => {
         .catch(err => console.log(err));
 })
 
+//Query all rentals of a user
 router.get('/my-rentals', (req, res, next) => {
     Rentals.find().select()
         .then(doc => {
@@ -26,7 +28,5 @@ router.get('/my-rentals', (req, res, next) => {
         })
         .catch(err => console.log(err));
 })
-
-
 
 module.exports = router;

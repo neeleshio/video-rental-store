@@ -5,30 +5,36 @@ import './styles/MyRentals.scss'
 
 class MyRentals extends Component {
     state = {
-        rentals: []
+        rentals: [],
+        total: '0'
     }
 
+    //Returnes users rentals on load
     componentDidMount() {
-        axios.get('http://localhost:5000/rentals').then(response => {
+        axios.get('http://localhost:5000/my-rentals').then(response => {
             this.setState({
                 rentals: response.data
             })
         })
     }
+
     render() {
+        //Map object helps getting indivisual values
         let rentals = this.state.rentals.map(rental => {
             return (
                 <tr key={rental.id}>
-                    <td>{rental.movie}</td>
+                    <td>{rental._id}</td>
+                    <td>{rental.filmName}</td>
                     <td>{rental.type}</td>
-                    <td>{rental.timeline} days</td>
-                    <td>{rental.price} &#8377;</td>
+                    <td>{rental.days} days</td>
+                    <td>{rental.total} &#8377;</td>
                 </tr>
             )
         })
 
+        //My rentals table.
         return (
-            <div>
+            <div className="table-container">
                 <div className="h1-container">
                     <h1>Your Rentals</h1>
                 </div>
@@ -38,7 +44,7 @@ class MyRentals extends Component {
                             <th>Order Id</th>
                             <th>Movie</th>
                             <th>Type</th>
-                            <th>Timeline</th>
+                            <th>days</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -46,6 +52,9 @@ class MyRentals extends Component {
                         {rentals}
                     </tbody>
                 </Table>
+                <div className="total">
+                    <h2>Total: {this.state.total} &#8377;</h2>
+                </div>
             </div>
         )
     }

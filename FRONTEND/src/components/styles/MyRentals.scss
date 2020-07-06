@@ -12,6 +12,18 @@
         padding: 10px;
         margin: 0;
         color: #fff;
-       
+    }
+
+    
+}
+
+.total {
+    display: flex;
+    justify-content: end;
+    padding-right: 150px;
+
+    h2 {
+        font-weight: 600;
+        color: #fff;
     }
 }

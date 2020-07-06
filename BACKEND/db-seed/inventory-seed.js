@@ -2,10 +2,12 @@ const Inventory = require('../models/inventory');
 const mongoose = require('mongoose')
 require('dotenv').config()
 
+//Connect to DB
 mongoose.connect(process.env.DB, { useUnifiedTopology: true, useNewUrlParser: true })
-    .then(result => { console.log('connected') })
+    .then(result => { console.log('DB connected') })
     .catch(err => { console.log(err) });
 
+//Data to push
 const inventory = [
     new Inventory({
         name: 'Avengers: Endgame',
@@ -71,7 +73,7 @@ const inventory = [
 
 let done = 0;
 for (let i = 0; i < inventory.length; i++) {
-    inventory[i].save((err, result) => {
+    inventory[i].save(() => {
         done++;
         if (done === inventory.length) {
             exit();
@@ -79,6 +81,7 @@ for (let i = 0; i < inventory.length; i++) {
     })
 }
 
+//Disconnect DB connection
 exit = () => {
     mongoose.disconnect();
 }

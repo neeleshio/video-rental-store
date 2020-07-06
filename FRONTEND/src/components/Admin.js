@@ -14,6 +14,7 @@ class Dashboard extends React.Component {
         }
     }
 
+    //Returns all films in the inventory on load
     componentDidMount() {
         axios.get('http://localhost:5000/admin').then(response => {
             this.setState({
@@ -22,6 +23,7 @@ class Dashboard extends React.Component {
         })
     }
 
+    //Returns all films in the inventory on click
     all = () => {
         axios.get('http://localhost:5000/admin').then(response => {
             this.setState({
@@ -30,6 +32,7 @@ class Dashboard extends React.Component {
         })
     }
 
+    //Returns only available(not rented) films
     available = () => {
         axios.get('http://localhost:5000/admin/available').then(response => {
             this.setState({
@@ -50,6 +53,7 @@ class Dashboard extends React.Component {
         })
     }
 
+    //Populates the info of the selected item
     editFilm(id, type) {
         this.handleShow()
         this.setState({
@@ -57,6 +61,7 @@ class Dashboard extends React.Component {
         })
     }
 
+    //OnClick updates the type 
     updateFilm = () => {
         axios.patch('http://localhost:5000/admin/id', this.state.editFilm).then(response => {
             this.all();
@@ -67,7 +72,9 @@ class Dashboard extends React.Component {
 
     }
 
+    //Renders all returned data on the webpage
     render() {
+        //Map object helps getting indivisual values
         let films = this.state.films.map(film => {
             return (
                 <tr key={film.id}>
@@ -76,7 +83,6 @@ class Dashboard extends React.Component {
                     <td>{film.price} &#8377;</td>
                     <td>
                         <Button variant="outline-success" onClick={this.editFilm.bind(this, film._id, film.type)}>Edit</Button>{' '}
-                        <Button variant="outline-danger">Delete</Button>{' '}
                     </td>
                 </tr>
             )
@@ -89,6 +95,7 @@ class Dashboard extends React.Component {
                     <Button variant="outline-primary" onClick={this.available} >Available</Button>{' '}
                 </div>
 
+                {/* Edit modal form */}
                 <div className="modal-container">
                     <Modal show={this.state.show} onHide={this.handleClose} centered size="sm">
                         <Modal.Header closeButton>
