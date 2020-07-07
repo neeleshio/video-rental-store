@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './styles/Home.scss';
 import { Row, Modal, Button, Form, Card, CardGroup, Col } from 'react-bootstrap'
 import axios from 'axios';
-import FadeIn from "react-fade-in";
-import Lottie from "react-lottie";
-import ReactLoading from "react-loading";
-import * as ReactBootstrap from 'react-bootstrap'
 
 class Home extends Component {
     state = {

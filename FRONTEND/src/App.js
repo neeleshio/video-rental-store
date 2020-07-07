@@ -3,7 +3,6 @@ import Navigation from './components/Navbar';
 import Admin from './components/Admin';
 import Home from './components/Home';
 import MyRentals from './components/MyRentals'
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 class App extends Component {
