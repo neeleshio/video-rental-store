@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/master/vrs.png" alt="Markdownify" width="600">
+  <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/master/vrs.png" alt="Video-Rental-Store" width="600">
 </h1>
 
 <h4 align="center">Responsive corona cases tracker webapp built with ReactJs.</h4>
