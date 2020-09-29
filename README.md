@@ -35,21 +35,46 @@
 You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) & [npm](http://npmjs.com) installed on your computer.
 
 ## Usage
+### Frontend
 
 From your command line:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/neeleshio/RestAPI-CRUD.git
+$ git clone https://github.com/neeleshio/Video-Rental-Store.git
 
 # Go into the repository
-$ cd RestAPI-CRUD-Friendly
+$ cd Video-Rental-Store
+
+# Go into the folder
+$ cd FRONTEND
 
 # Install dependencies
 $ npm install
 
 # Run the server
 $ npm start
+```
+
+### Backend
+
+From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/neeleshio/Video-Rental-Store.git
+
+# Go into the repository
+$ cd Video-Rental-Store
+
+# Go into the folder
+$ cd BACKEND
+
+# Install dependencies
+$ npm install
+
+# Run the server
+$ node index.js
 ```
 
 ## Become a Contributor :
