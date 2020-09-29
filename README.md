@@ -21,14 +21,13 @@
 ## Features
 
 1. Inventory of films.
-2. Calculate the price for rentals.
+2. Calculates the price for rentals.
 3. Keep track of the customers “bonus” points.
 4. Changing film type.
-5. List all films.
-6. List all available films (e.g. not rented at the moment).
-7. The price of rentals is based on the type of film rented and how many days the film is rented for.
-8. Customers get bonus points when renting films. A new release gives 2 points and other films give one point per rental (regardless of the time rented).
-9. The system keeps track of how many bonus points the customer has and the customers can use their accumulated bonus points to pay for “new release” rentals.
+5. List all available films (e.g. not rented at the moment).
+6. The price of rentals is based on the type of film rented and how many days the film is rented for.
+7. Customers get bonus points when renting films. A new release gives 2 points and other films give one point per rental (regardless of the time rented).
+8. The system keeps track of how many bonus points the customer has and the customers can use their accumulated bonus points to pay for “new release” rentals.
 
 ## Installation
 
