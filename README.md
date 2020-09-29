@@ -12,7 +12,11 @@
   <img src="https://visitor-badge.laobi.icu/badge?page_id=RestAPI-CRUD-Friendly.visitor-badge">
 </div>
 
-<hr/>
+## Demo
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/neeleshio/Mail-Box/master/Sequence%20%231(2).gif" alt="demo" width="600">
+</h1>
 
 ## Installation
 
