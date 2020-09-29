@@ -15,7 +15,7 @@
 ## Demo
 
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/blob/master/Sequence %231(3).gif" alt="demo" width="600">
+  <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/master/Sequence%20%231(5).gif" alt="demo" width="600">
 </h1>
 
 ## Installation
