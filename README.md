@@ -18,6 +18,18 @@
   <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/master/Sequence%20%231(5).gif" alt="demo" width="600">
 </h1>
 
+## Features
+
+1. Inventory of films.
+2. Calculate the price for rentals.
+3. Keep track of the customers “bonus” points.
+4. Changing film type.
+5. List all films.
+6. List all available films (e.g. not rented at the moment).
+7. The price of rentals is based on the type of film rented and how many days the film is rented for.
+8. Customers get bonus points when renting films. A new release gives 2 points and other films give one point per rental (regardless of the time rented).
+9. The system keeps track of how many bonus points the customer has and the customers can use their accumulated bonus points to pay for “new release” rentals.
+
 ## Installation
 
 You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) & [npm](http://npmjs.com) installed on your computer.
@@ -40,17 +52,9 @@ $ npm install
 $ npm start
 ```
 
-## Tools :
-
-Use <a href="https://www.postman.com/"><img src="https://img.shields.io/badge/POSTMAN-orange"></a> for handling all the HTTP requests.
-
-## API documentation :
-
-The detailed API documentation with requests and responses snapshots is available here <a href="https://documenter.getpostman.com/view/10182345/T1LPE7h2?version=latest"><img src="https://img.shields.io/badge/API-documentation-blueviolet" ></a>
-
 ## Become a Contributor :
 
-1. Clone the repo and create a new branch: $ git checkout https://github.com/neeleshio/RestAPI-CRUD.git
+1. Clone the repo and create a new branch: $ git checkout https://github.com/neeleshio/Video-Rental-Store.git
 
 2. Make changes and test.
 
