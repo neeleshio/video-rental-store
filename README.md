@@ -2,7 +2,9 @@
   <img src="https://raw.githubusercontent.com/neeleshio/Video-Rental-Store/master/vrs.png" alt="Video-Rental-Store" width="600">
 </h1>
 
-<h4 align="center">Responsive corona cases tracker webapp built with ReactJs.</h4>
+<h4 align="center">A MERN (Mongodb, Expressjs, Reactjs, Nodejs) stack video rental web-app.
+
+</h4>
 
 <div align="center">
   <a href="https://coronatrackerindia.vercel.app/"><img src="https://img.shields.io/badge/host-heroku-blueviolet">
